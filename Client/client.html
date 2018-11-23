@@ -1,0 +1,136 @@
+<!doctype html>
+<html>
+  <head>
+    <title>Stock Watch</title>
+    <meta charset="utf-8" />
+    <style type="text/css">
+      body {
+        text-align: center;
+        min-width: 500px;
+      }
+    </style>
+    <script src="http://code.jquery.com/jquery.min.js"></script>
+    <script>
+
+      $(document).ready(function () {
+        $("div#message_details").hide()
+ 
+        var ws;
+
+        $("#open").click(function(evt) {
+          evt.preventDefault();
+ 
+          var host = $("#host").val();
+          var port = $("#port").val();
+          var uri = $("#uri").val();
+ 
+          // create websocket instance
+          ws = new WebSocket("ws://" + host + ":" + port + uri);
+           
+          // Handle incoming websocket message callback
+          ws.onmessage = function(evt) {
+            alert("message received: " + evt.data.length);
+            };
+ 
+          // Close Websocket callback
+          ws.onclose = function(evt) {
+            alert("Connection close");
+            $("#host").css("background", "#ff0000"); 
+            $("#port").css("background", "#ff0000"); 
+            $("#uri").css("background",  "#ff0000");
+            $("div#message_details").hide();
+			$("div#connection_details").show();
+            };
+ 
+          // Open Websocket callback
+          ws.onopen = function(evt) { 
+            $("#host").css("background", "#00ff00"); 
+            $("#port").css("background", "#00ff00"); 
+            $("#uri").css("background", "#00ff00");
+            $("div#message_details").show();
+            $("div#connection_details").hide();
+          };
+        });
+
+        // Send websocket message function
+        $("#send").click(function(evt) {
+            ws.send($("#message").val());
+        });
+        
+        $("#send_RSI").click(function(evt) {
+            ws.send($("#message").val() + ',1');
+        });
+        
+        $("#send_CCI").click(function(evt) {            
+            ws.send($("#message").val() + ',2');
+        });
+        
+        $("#send_MACD").click(function(evt) {
+            ws.send($("#message").val() + ',3');
+        });
+        
+        $("#send_BB").click(function(evt) {
+            ws.send($("#message").val() + ',4');
+        });
+        
+        $("#send_SMA").click(function(evt) {           
+            ws.send($("#message").val() + ',5');
+        });
+        
+        $("#send_CSD").click(function(evt) {
+            ws.send($("#message").val() + ',6');
+        });
+        
+        $("#send_OHLC").click(function(evt) {
+            ws.send($("#message").val() + ',7');
+        });
+        
+        $("#send_ACP").click(function(evt) {
+            ws.send($("#message").val() + ',8');
+        });
+        
+        $("#send_DSD").click(function(evt) {
+            ws.send($("#message").val() + ',9');
+        });
+ 
+      });
+    </script>
+  </head>
+ 
+  <body>
+    <h1>Stock Watch</h1>
+    <div id="connection_details">
+      <label for="host">host:</label>
+      <input type="text" id="host" value="localhost" style="background:#ff0000;"/><br />
+      <label for="port">port:</label>
+      <input type="text" id="port" value="8888" style="background:#ff0000;"/><br />
+      <label for="uri">uri:</label>
+      <input type="text" id="uri" value="/ws" style="background:#ff0000;"/><br />
+      <input type="submit" id="open" value="open" />
+    </div>
+    
+    <div id="message_details">
+        </br></br>
+        <img src ="/home/programmer/Desktop/Adi/download.png" height="100"/>
+        <h3>HISTORY</h3>
+		<p> 
+			Both College dropouts and computer enthusiast Paul Allen and Bill Gates introduced the concept of Microsoft into the world in January 1975. The history of Microsoft begins when Paul Allen, Bill Gates’s only childhood friend mentioned to him about a microcomputer called Altair 8800, which he had come across in a popular magazine at that time named Poplar electronics. The two great minds decided to create a newer more simplified version of the Altair 8800 by adding an interpreter to the existing programming language of Altair 8800 newly released as Altair Basic. This became their first milestone to the founding of Microsoft company. The new interpreter discovered was itself a program that converted simple human language to binary codes (machine language) for the computer to read, interpret, execute functions and codes. In addition, the interpreter also came with added features such as line editor, input, output system and a final punch tape that was used to store data and produce an output.
+		</p>
+		<p>
+			The two masterminds after having created an MVP of Altair Basic, took the help of popular Electronics magazine founder Mr. Ed Roberts to market and publish by introducing Altair Basic to the world. To demonstrate their idea, the two thriving entrepreneurs had no interpreter or Altair system at their disposal.  “However, Allen had an Intel 8008 emulator from his previous traf-0-data that ran on a PDP 10 time-sharing computer that he adopted and developed and tested it on Harvard’s PDP 10” [2]. They also seeked the help of a Harvard student Monty Davidoff who wrote the floating-point arithmetic routines. With a total of 8 weeks effort, all of this flew from Boston their current residence to Albuquerque, New Mexico for their meeting with Ed Roberts. Upon their flawless demonstration, the concept of this interpreter was accepted, appreciated and was made ready to launch as the new Altair Basic. Within 3 years of sprouting this new idea Gates and Allen officially established Microsoft on April 4th, 1975 with Gates as the founding CEO, and Allen as the Executive Vice President, Andrew Louis as the technical Writer and Bob -O’Rear as the Chief Mathematician [1]. In search of newer employees their office was now at Bellevue, Washington.</p>
+		</p>
+        <label for="message">TIKR:</label>
+        <input type="text" id="message" value="Hello World!"/><br /><br /><br />
+        <input type="submit" id="send" value="send" /><br />
+        <input type="submit" id="send_RSI" value="RSI" /><br />
+        <input type="submit" id="send_CCI" value="CCI" /><br />
+        <input type="submit" id="send_MACD" value="MACD" /><br />
+        <input type="submit" id="send_BB" value="Bollinger Band" /><br />
+		<input type="submit" id="send_SMA" value="Simple Moving Average" /><br />
+		<input type="submit" id="send_CSD" value="Candle Stick Depiction" /><br />
+		<input type="submit" id="send_OHLC" value="Line Plot of OHLC" /><br />
+		<input type="submit" id="send_ACP" value="Line Plot of ADJ CP" /><br />
+		<input type="submit" id="send_DSD" value="Download Stock Data" /><br />
+    </div>
+  </body>
+</html>
