@@ -26,14 +26,16 @@ def main(tikr):
 	web["Upper Band"] = web_close["MA_20"] + (web['20 Day STD'] * 2) # adding 20 day moving average to 20 day standard deviation 
 	web["Lower Band"] = web_close["MA_20"] - (web['20 Day STD'] * 2) # for lower band subtracting 20 day moving average and 20 day standard deviation 
 	pylab.rcParams['figure.figsize'] = (20, 9)
-	'''
+	
 	plt.plot(web_close["Close"],label='Close')
 	plt.plot(web_close["MA_20"],label="MA 20 days")
 	plt.plot(web["Upper Band"], label="Upperband")
 	plt.plot(web["Lower Band"], label="Lowerband")
 	plt.legend(loc=2)
-	plt.show()
-	'''
+	plt.savefig('./plot.png')
+	plt.close()
+	#plt.show()
+	
 	table=[]
 	for  i in range(len(list(web_close["Close"]))):
 		table.append([str(list(web_close["Close"])[i]),str(list(web_close["MA_20"])[i]),str(list(web["Upper Band"])[i]),str(list(web["Lower Band"])[i]),str(dates[i])])

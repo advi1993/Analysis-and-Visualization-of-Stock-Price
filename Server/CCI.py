@@ -29,12 +29,14 @@ def main(tikr):
 	
 	TP=(web.High+web.Low+web.Close)/3
 	CCI = pd.Series((TP -web_close["MA_20"]) / (0.015*web["20 Day STD"])) 
-	'''
+	
 	pylab.rcParams['figure.figsize'] = (20, 9)
 	plt.plot(CCI,label='CCI')
 	plt.legend(loc=2)
-	plt.show()
-	'''
+	plt.savefig('./plot.png')
+	plt.close()
+	#plt.show()
+	
 	table=[]
 	for  i in range(len(list(web_ohlc["Date"]))):
 		table.append([str(list(web_ohlc["Date"])[i]),str(CCI[i])])

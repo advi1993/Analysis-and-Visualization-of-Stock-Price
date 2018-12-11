@@ -31,7 +31,6 @@ def main(tikr):
 	ax= plt.gca() #used to set "get current axes".Current here means that it provides a handle to the last active axes. If there is no axes yet, an axes will be created. If you create two subplots, the subplot that is created last is the current one.
 	ax.xaxis_date()
 
-	'''
 	plt.plot(web_ohlc['Date'],web_ohlc.Close)
 	plt.plot(web_ohlc['Date'],web_ohlc.Open)
 	plt.plot(web_ohlc['Date'],web_ohlc.High)
@@ -40,9 +39,10 @@ def main(tikr):
 	plt.ylabel("Price")
 	plt.xlabel("Dates")
 	plt.legend(loc=2)
-
-	plt.show()
-	'''
+	plt.savefig('./plot.png')
+	plt.close()
+	#plt.show()
+	
 	
 	table=[]
 	for  i in range(len(list(web_ohlc["Date"]))):

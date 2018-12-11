@@ -30,14 +30,15 @@ def main(tikr):
 	#print (web['26 ema'],web['12 ema'])
 	web['MACD'] = (web['12 ema'] - web['26 ema'])
 	print(web['MACD'])
-	'''
+	
 	pylab.rcParams['figure.figsize'] = (20, 9)
 
 	plt.plot(web['MACD'],label='MACD')
 	plt.legend(loc=2)
-
-	plt.show()
-	'''
+	plt.savefig('./plot.png')
+	plt.close()
+	#plt.show()
+	
 	table=[]
 	for  i in range(len(list(web_ohlc["Date"]))):
 		table.append([str(list(web_ohlc["Date"])[i]),str(web['MACD'][i])])

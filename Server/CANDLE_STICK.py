@@ -28,7 +28,7 @@ def main(tikr):
 	#Converting dates column to float values
 	web_ohlc['Date'] = web_ohlc['Date'].map(mdates.date2num)
 
-	'''
+	
 	pylab.rcParams['figure.figsize'] = (20, 9)
 	ax1 = plt.subplot2grid((8,1), (0,0), rowspan=8, colspan=1)
 	plt.tight_layout()
@@ -40,9 +40,10 @@ def main(tikr):
 	candlestick_ohlc(ax1,web_ohlc.values,width=1.5, colorup='g', colordown='r',alpha=0.75)
 	plt.ylabel("Price")
 	plt.legend(loc=2)# shows label in the left most postion of the graph 
-
-	plt.show()
-	'''
+	plt.savefig('./plot.png')
+	plt.close()
+	#plt.show()
+	
 	
 	table=[]
 	for  i in range(len(list(web_ohlc["Date"]))):

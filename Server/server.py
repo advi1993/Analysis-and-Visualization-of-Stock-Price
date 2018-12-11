@@ -12,6 +12,8 @@ import CCI
 import MACD
 import OHLC_LINE_PLOT
 import SIMPLE_MOVING_AVERAGE_50_20
+import base64
+
 '''
 This is a simple Websocket Echo server that uses the Tornado websocket handler.
 Please run `pip install tornado` with python of version 2.7.9 or greater to install tornado.
@@ -33,42 +35,27 @@ class WSHandler(tornado.websocket.WebSocketHandler):
 		# Reverse Message and send it back
 		# print('sending back message: %s' % message[::-1])
 		if mode == 1:
-			self.write_message(str(RSI.main(tikr)))
-			print(tikr)
-			print(len(str(RSI.main(tikr))))
+			RSI.main(tikr)
 		if mode == 2:
-			self.write_message(str(CCI.main(tikr)))
-			print(tikr)
-			print(len(str(CCI.main(tikr))))
+			CCI.main(tikr)
 		if mode == 3:
-			self.write_message(str(MACD.main(tikr)))
-			print(tikr)
-			print(len(str(MACD.main(tikr))))
+			MACD.main(tikr)
 		if mode == 4:
-			self.write_message(str(BOLLINGER_BANDS.main(tikr)))
-			print(tikr)
-			print(len(str(BOLLINGER_BANDS.main(tikr))))
+			BOLLINGER_BANDS.main(tikr)
 		if mode == 5:
-			self.write_message(str(SIMPLE_MOVING_AVERAGE_50_20.main(tikr)))
-			print(tikr)
-			print(len(str(SIMPLE_MOVING_AVERAGE_50_20.main(tikr))))
+			SIMPLE_MOVING_AVERAGE_50_20.main(tikr)
 		if mode == 6:
-			self.write_message(str(CANDLE_STICK.main(tikr)))
-			print(tikr)
-			print(len(str(CANDLE_STICK.main(tikr))))
+			CANDLE_STICK.main(tikr)
 		if mode == 7:
-			self.write_message(str(OHLC_LINE_PLOT.main(tikr)))
-			print(tikr)
-			print(len(str(OHLC_LINE_PLOT.main(tikr))))
+			OHLC_LINE_PLOT.main(tikr)
 		if mode == 8:
-			self.write_message(str(ADJ_CLOSE_PRICE.main(tikr)))
-			print(tikr)
-			print(len(str(ADJ_CLOSE_PRICE.main(tikr))))
+			ADJ_CLOSE_PRICE.main(tikr)
 		if mode == 9:
-			self.write_message(str(DOWNLOAD_DATA.main(tikr)))
-			print(tikr)
-			print(len(str(DOWNLOAD_DATA.main(tikr))))
-        
+			DOWNLOAD_DATA.main(tikr)
+		with open("plot.png","rb") as image_file:
+			img = base64.b64encode(image_file.read())
+		self.write_message(img)
+			
 	def on_close(self):
 		print('connection closed')
  

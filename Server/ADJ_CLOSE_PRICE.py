@@ -24,12 +24,14 @@ def main(tikr):
 	#Converting dates column to float values
 	web_ohlc['Date'] = web_ohlc['Date'].map(mdates.date2num)
 
-	'''
+	
 	pylab.rcParams['figure.figsize'] = (20, 9)
 	print(web["Adj Close"])
 	plt.plot(web_ohlc["Date"],web["Adj Close"])
-	plt.show()
-	'''
+	plt.savefig('./plot.png')
+	plt.close()
+	#plt.show()
+	
 	table=[]
 	for  i in range(len(list(web_ohlc["Date"]))):
 		table.append([str(list(web_ohlc["Date"])[i]),str(list(web["Adj Close"])[i])])

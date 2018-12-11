@@ -77,7 +77,7 @@ def main(tikr):
 
 	#plotting RSI INDICATOR
 	
-	'''
+	
 	pylab.rcParams['figure.figsize'] = (20, 9)#this function makes the graph bigger and presentable 
 	ax= plt.gca()
 	ax.xaxis_date()
@@ -85,8 +85,10 @@ def main(tikr):
 	plt.plot(web_ohlc['Date'],rsi)
 	plt.ylim(0,100)
 	plt.yticks([30, 70])
-	plt.show()
-	'''
+	plt.savefig('./plot.png')
+	plt.close()
+	#plt.show()
+	
 	
 	table=[]
 	for  i in range(len(rsi)):

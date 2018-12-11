@@ -25,15 +25,15 @@ def main(tikr):
 	#Converting dates column to float values
 	web_ohlc['Date'] = web_ohlc['Date'].map(mdates.date2num)
 
-	'''
 	pylab.rcParams['figure.figsize'] = (20, 9)
 	plt.grid(True)
 	plt.plot(web_close['Close'],label='Close')
 	plt.plot(web_close["MA_20"],label="MA 20 days")
 	plt.plot(web_close["MA_50"],label="MA 50 days")
 	plt.legend(loc=2)
-	plt.show()
-	'''
+	plt.savefig('./plot.png')
+	plt.close()
+	#plt.show()
 	
 	table=[]
 	for  i in range(len(list(web_close["Close"]))):

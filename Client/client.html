@@ -7,6 +7,7 @@
       body {
         text-align: center;
         min-width: 500px;
+        background: orange;
       }
     </style>
     <script src="http://code.jquery.com/jquery.min.js"></script>
@@ -29,7 +30,8 @@
            
           // Handle incoming websocket message callback
           ws.onmessage = function(evt) {
-            alert("message received: " + evt.data.length);
+            //alert("message received: " + evt.data.length);
+            document.getElementById('img').setAttribute('src','data:image/png;base64,'+evt.data)
             };
  
           // Close Websocket callback
@@ -98,6 +100,7 @@
   </head>
  
   <body>
+	
     <h1>Stock Watch</h1>
     <div id="connection_details">
       <label for="host">host:</label>
@@ -111,14 +114,49 @@
     
     <div id="message_details">
         </br></br>
-        <img src ="/home/programmer/Desktop/Adi/download.png" height="100"/>
-        <h3>HISTORY</h3>
-		<p> 
-			Both College dropouts and computer enthusiast Paul Allen and Bill Gates introduced the concept of Microsoft into the world in January 1975. The history of Microsoft begins when Paul Allen, Bill Gates’s only childhood friend mentioned to him about a microcomputer called Altair 8800, which he had come across in a popular magazine at that time named Poplar electronics. The two great minds decided to create a newer more simplified version of the Altair 8800 by adding an interpreter to the existing programming language of Altair 8800 newly released as Altair Basic. This became their first milestone to the founding of Microsoft company. The new interpreter discovered was itself a program that converted simple human language to binary codes (machine language) for the computer to read, interpret, execute functions and codes. In addition, the interpreter also came with added features such as line editor, input, output system and a final punch tape that was used to store data and produce an output.
-		</p>
+        <img id="img" src ="/home/programmer/Desktop/Adi/download.png" height="900" width="1600"/>
+        
+		<h3>
+			<a href = "https://en.wikipedia.org/wiki/MACD" target="_blank">
+				MACD- Moving Average Convergence and Divergence 
+			</a>
+		</h3>
 		<p>
-			The two masterminds after having created an MVP of Altair Basic, took the help of popular Electronics magazine founder Mr. Ed Roberts to market and publish by introducing Altair Basic to the world. To demonstrate their idea, the two thriving entrepreneurs had no interpreter or Altair system at their disposal.  “However, Allen had an Intel 8008 emulator from his previous traf-0-data that ran on a PDP 10 time-sharing computer that he adopted and developed and tested it on Harvard’s PDP 10” [2]. They also seeked the help of a Harvard student Monty Davidoff who wrote the floating-point arithmetic routines. With a total of 8 weeks effort, all of this flew from Boston their current residence to Albuquerque, New Mexico for their meeting with Ed Roberts. Upon their flawless demonstration, the concept of this interpreter was accepted, appreciated and was made ready to launch as the new Altair Basic. Within 3 years of sprouting this new idea Gates and Allen officially established Microsoft on April 4th, 1975 with Gates as the founding CEO, and Allen as the Executive Vice President, Andrew Louis as the technical Writer and Bob -O’Rear as the Chief Mathematician [1]. In search of newer employees their office was now at Bellevue, Washington.</p>
+			The MACD indicator (or "oscillator") is a collection of three time series calculated from historical price data, most often the closing price. These three series are: the MACD series proper, the "signal" or "average" series, and the "divergence" series which is the difference between the two. The MACD series is the difference between a "fast" (short period) exponential moving average (EMA), and a "slow" (longer period) EMA of the price series
 		</p>
+		<h3>
+			<a href = "https://en.wikipedia.org/wiki/Commodity_channel_index " target="_blank">
+				CCI- Commodity Channel Index
+			</a>
+		</h3>
+		<p>
+			CCI measures the current price level relative to an average price level over a given period of time. CCI is relatively high when prices are far above their average. CCI is relatively low when prices are far below their average. In this manner, CCI can be used to identify overbought and oversold levels.
+		</p>
+		<h3>
+			<a href = "https://en.wikipedia.org/wiki/relative_strength_index" target="_blank">
+				RSI- Relative Strength Index
+			</a>
+		</h3>
+		<p>
+			The Relative Strength Index (RSI), developed by J. Welles Wilder, is a momentum oscillator that measures the speed and change of price movements. The RSI oscillates between zero and 100. RSI is considered overbought when above 70 and oversold when below 30. During strong trends, the RSI may remain in overbought or oversold for extended periods.
+		</p>
+		<h3>
+			<a href = "https://en.wikipedia.org/wiki/Candelstick_chart" target="_blank">
+				Candle Stick –OHLC
+			</a>
+		</h3>
+		<p>
+			Candle contains open, high, low and close values for each time period you want to display. The hollow or filled portion of the candlestick is called “the body” (also referred to as “the real body”). The long thin lines above and below the body represent the high/low range and are called “shadows” (also referred to as “wicks” and “tails”). The high is marked by the top of the upper shadow and the low by the bottom of the lower shadow. If the stock closes higher than its opening price, a hollow candlestick is drawn with the bottom of the body representing the opening price and the top of the body representing the closing price. If the stock closes lower than its opening price, a filled candlestick is drawn with the top of the body representing the opening price and the bottom of the body representing the closing price.
+		</p>
+		<h3>
+			<a href = "https://en.wikipedia.org/wiki/Bolinger_Bands" target="_blank">
+				Bollinger Bands
+			</a>
+		</h3>
+		<p>
+			Bollinger Bands are a type of statistical chart characterizing the prices and volatility over time of a financial instrument or commodity, using a formulaic method propounded by John Bollinger in the 1980s. Financial traders employ these charts as a methodical tool to inform trading decisions, control automated trading systems, or as a component of technical analysis. The purpose of Bollinger Bands is to provide a relative definition of high and low prices of a market. By definition, prices are high at the upper band and low at the lower band. This definition can aid in rigorous pattern recognition and is useful in comparing price action to the action of indicators to arrive at systematic trading decisions
+		</p>
+	
         <label for="message">TIKR:</label>
         <input type="text" id="message" value="Hello World!"/><br /><br /><br />
         <input type="submit" id="send" value="send" /><br />
